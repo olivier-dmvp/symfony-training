@@ -56,11 +56,12 @@ class HandlerSpec extends ObjectBehavior
         $this(new Input('Rex', 'male', '1', 12, '#ff0000'))
             ->shouldHaveType(Output::class);
 
-        $events = $this->eventsRegisterer->getEvents();
-        if (1 !== count($events)
-            || !$events[0] instanceof DinosaurIsBorn
-            || 42 !== $events[0]->dinosaurId) {
-            throw new FailureException('DinosaurIsBorn(42) aurait dû être enregistré');
+        $expected = [new DinosaurIsBorn(42)];
+
+        if ($expected != $this->eventsRegisterer->getEvents()) {
+            throw new FailureException(
+                'DinosaurIsBorn was not registered',
+            );
         }
     }
 
