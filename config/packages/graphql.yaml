@@ -10,6 +10,8 @@ overblog_graphql:
                     type: yaml
                     dir: "%kernel.project_dir%/config/graphql/types"
                     suffix: ~
-        errors_handler:
-            enabled: true
-            rethrow_internal_exceptions: true
+    errors_handler:
+        enabled: true
+        rethrow_internal_exceptions: true
+#    security:
+#        query_max_complexity: 10
