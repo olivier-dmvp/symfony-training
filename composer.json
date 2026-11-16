@@ -42,7 +42,7 @@
         "twig/twig": "^3.21"
     },
     "require-dev": {
-        "deptrac/deptrac": "^4.2",
+        "deptrac/deptrac": "^4.7",
         "doctrine/doctrine-fixtures-bundle": "^4.0",
         "friendsofphp/php-cs-fixer": "^3.87",
         "phpspec/phpspec": "^8.3",
