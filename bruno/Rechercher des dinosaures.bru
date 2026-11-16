@@ -1,0 +1,32 @@
+meta {
+  name: Rechercher des dinosaures
+  type: graphql
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: none
+}
+
+body:graphql {
+  query SearchDinosaurs($search: String) {
+    dinosaurs(search: $search) {
+      id
+      name
+    }
+  }
+}
+
+body:graphql:vars {
+  {
+    "search": "dinosaur_1"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.errors: isUndefined
+  res.body.data.dinosaurs: isArray
+}

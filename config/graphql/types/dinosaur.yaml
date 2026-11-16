@@ -1,0 +1,11 @@
+Dinosaur:
+    type: object
+    config:
+        fields:
+            id: { type: 'ID!' }
+            name: { type: 'String!' }
+            gender: { type: 'String!' }
+            age: { type: 'Int!' }
+            eyesColor: { type: 'String!' }
+            species: { type: 'Species!' }
+            displayName: { type: 'String!' }

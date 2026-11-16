@@ -1,0 +1,32 @@
+meta {
+  name: Lister les espèces
+  type: graphql
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: none
+}
+
+body:graphql {
+  query Species {
+    species {
+      id
+      name
+      habitats
+      feeding
+      dinosaurs {
+        id
+        name
+      }
+    }
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.errors: isUndefined
+  res.body.data.species: isArray
+}
