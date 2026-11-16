@@ -129,12 +129,15 @@ final class AppFixtures extends Fixture
         ];
 
         for ($i = 0; $i < 15; ++$i) {
+            $age = rand(1, 40);
+
             $dinosaur = new Dinosaur(
                 'dinosaur_' . $i,
                 $gender[array_rand($gender)],
                 $speciesList[array_rand($speciesList)],
-                rand(1, 40),
-                '#000000'
+                $age,
+                '#000000',
+                new \DateTimeImmutable(sprintf('-%d years -%d days', $age, rand(0, 364))),
             );
 
             $manager->persist($dinosaur);

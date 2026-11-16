@@ -53,7 +53,7 @@ class HandlerSpec extends ObjectBehavior
                     ->setValue($arguments[0], 42);
             });
 
-        $this(new Input('Rex', 'male', '1', 12, '#ff0000'))
+        $this(new Input('Rex', 'male', '1', 12, '#ff0000', new \DateTimeImmutable('2021-01-01')))
             ->shouldHaveType(Output::class);
 
         $expected = [new DinosaurIsBorn(42)];
@@ -75,7 +75,27 @@ class HandlerSpec extends ObjectBehavior
         $this
             ->shouldThrow(SpeciesNotFoundException::class)
             ->during('__invoke', [
-                new Input('Rex', 'male', '42', 12, '#ff0000'),
+                new Input('Rex', 'male', '42', 12, '#ff0000', new \DateTimeImmutable('2021-01-01')),
             ]);
+    }
+
+    function it_gives_the_birthdate_to_the_dinosaur(
+        DinosaursCollection $dinosaurs,
+        SpeciesCollection $species,
+    ): void {
+        $dinosaurs->findByName('Rex')->willReturn(null);
+        $species->find('1')->willReturn(
+            new Species('Tyrannosaurus', ['forest'], 'carnivore'),
+        );
+        $dinosaurs->add(Argument::that(
+            fn (Dinosaur $d) => $d->getBirthdate() == new \DateTimeImmutable('2021-01-01'),
+        ))
+            ->shouldBeCalled()
+            ->will(function (array $arguments): void {
+                (new \ReflectionProperty($arguments[0], 'id'))
+                    ->setValue($arguments[0], 42);
+            });
+
+        $this(new Input('Rex', 'male', '1', 12, '#ff0000', new \DateTimeImmutable('2021-01-01')));
     }
 }

@@ -7,6 +7,7 @@ use Domain\Model\Species;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -35,7 +36,12 @@ final class DinosaurType extends AbstractType
             ])
             ->add('age', NumberType::class)
             ->add('eyesColor', ColorType::class)
-            ->add('submit', SubmitType::class);
+            ->add('birthDate', DateType::class, [
+                'widget' => 'single_text',
+                'input' => 'datetime_immutable',
+            ])
+            ->add('submit', SubmitType::class)
+        ;
 
         $builder->get('species')->addModelTransformer($this->speciesReadToModel);
     }
