@@ -1,0 +1,12 @@
+Mutation:
+    type: object
+    config:
+        fields:
+            createDinosaur:
+                type: 'Dinosaur!'
+                args: { input: { type: 'CreateDinosaurInput!' } }
+                resolve: |
+                    @=mutation(
+                    "createDinosaur",
+                    args["input"]
+                    )

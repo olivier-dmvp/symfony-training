@@ -1,0 +1,9 @@
+CreateDinosaurInput:
+    type: input-object
+    config:
+        fields:
+            name: { type: 'String!' }
+            gender: { type: 'String!' }
+            speciesId: { type: 'ID!' }
+            age: { type: 'Int!' }
+            eyesColor: { type: 'String!' }

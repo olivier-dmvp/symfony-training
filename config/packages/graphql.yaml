@@ -1,8 +1,15 @@
 overblog_graphql:
     definitions:
+        schema:
+            main:
+                query: Query
+                mutation: Mutation
         mappings:
             types:
                 -
                     type: yaml
                     dir: "%kernel.project_dir%/config/graphql/types"
                     suffix: ~
+        errors_handler:
+            enabled: true
+            rethrow_internal_exceptions: true

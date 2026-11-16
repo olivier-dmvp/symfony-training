@@ -119,6 +119,9 @@
     "nikic/php-parser": {
         "version": "v4.13.0"
     },
+    "overblog/graphiql-bundle": {
+        "version": "v1.0.0"
+    },
     "overblog/graphql-bundle": {
         "version": "v1.10.0"
     },

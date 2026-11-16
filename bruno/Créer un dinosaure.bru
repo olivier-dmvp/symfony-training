@@ -1,0 +1,42 @@
+meta {
+  name: Créer un dinosaure
+  type: graphql
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: none
+}
+
+body:graphql {
+  mutation CreateDinosaur($input: CreateDinosaurInput!) {
+    createDinosaur(input: $input) {
+      id
+      name
+      displayName
+      species {
+        name
+      }
+    }
+  }
+}
+
+body:graphql:vars {
+  {
+    "input": {
+      "name": "Bruno",
+      "gender": "Male",
+      "speciesId": "3",
+      "age": 12,
+      "eyesColor": "#00ff00"
+    }
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.errors: isUndefined
+  res.body.data.createDinosaur.name: eq "Bruno"
+}

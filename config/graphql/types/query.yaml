@@ -1,0 +1,25 @@
+Query:
+    type: object
+    config:
+        fields:
+            dinosaurs:
+                type: '[Dinosaur!]!'
+                args: { search: { type: 'String' } }
+                resolve: |
+                    @=query(
+                    "dinosaurs",
+                    args["search"]
+                    )
+            dinosaur:
+                type: 'Dinosaur!'
+                args: { id: { type: 'ID!' } }
+                resolve: |
+                    @=query(
+                    "dinosaur",
+                    args["id"]
+                    )
+            species:
+                type: '[Species!]!'
+                resolve: '@=query("species")'
+
+

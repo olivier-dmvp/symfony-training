@@ -1,0 +1,32 @@
+meta {
+  name: Dinosaure introuvable
+  type: graphql
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: none
+}
+
+body:graphql {
+  query Dinosaur($id: ID!) {
+    dinosaur(id: $id) {
+      id
+      name
+    }
+  }
+}
+
+body:graphql:vars {
+  {
+    "id": "999999"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.errors: isDefined
+  res.body.data: isNull
+}

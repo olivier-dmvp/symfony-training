@@ -1,0 +1,3 @@
+when@dev:
+    overblog_graphiql:
+        resource: '@OverblogGraphiQLBundle/Resources/config/routing.xml'

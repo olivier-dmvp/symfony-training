@@ -1,0 +1,9 @@
+Species:
+    type: object
+    config:
+        fields:
+            id: { type: 'ID!' }
+            name: { type: 'String!' }
+            habitats: { type: '[String!]!' }
+            feeding: { type: 'String!' }
+            dinosaurs: { type: '[Dinosaur!]!' }
