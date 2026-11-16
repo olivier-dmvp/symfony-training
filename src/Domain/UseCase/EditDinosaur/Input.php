@@ -14,7 +14,8 @@ final readonly class Input
         public string $gender,
         public string $speciesId,
         public int $age,
-        public string $eyesColor
+        public string $eyesColor,
+        public ?\DateTimeImmutable $birthDate,
     ) {
     }
 
@@ -26,7 +27,8 @@ final readonly class Input
             $dinosaur->getGender(),
             (string) $dinosaur->getSpecies()->getId(),
             $dinosaur->getAge(),
-            $dinosaur->getEyesColor()
+            $dinosaur->getEyesColor(),
+            $dinosaur->getBirthDate(),
         );
     }
 }

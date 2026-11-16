@@ -14,6 +14,7 @@ final class Dinosaur
     private Species $species;
     private int $age;
     private string $eyesColor;
+    private ?\DateTimeImmutable $birthDate;
 
     public function __construct(ModelDinosaur $dinosaurModel)
     {
@@ -23,6 +24,7 @@ final class Dinosaur
         $this->species = new Species($dinosaurModel->getSpecies());
         $this->age = $dinosaurModel->getAge();
         $this->eyesColor = $dinosaurModel->getEyesColor();
+        $this->birthDate = $dinosaurModel->getBirthdate();
     }
 
     public function getId(): int
@@ -78,5 +80,15 @@ final class Dinosaur
     public function setEyesColor(string $eyesColor): void
     {
         $this->eyesColor = $eyesColor;
+    }
+
+    public function getBirthDate(): ?\DateTimeImmutable
+    {
+        return $this->birthDate;
+    }
+
+    public function setBirthDate(?\DateTimeImmutable $birthDate): void
+    {
+        $this->birthDate = $birthDate;
     }
 }

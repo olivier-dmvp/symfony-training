@@ -12,6 +12,7 @@ class Dinosaur implements AggregateRoot
         private Species $species,
         private int $age,
         private string $eyesColor,
+        private ?\DateTimeImmutable $birthDate,
     ) {
     }
 
@@ -79,6 +80,17 @@ class Dinosaur implements AggregateRoot
             'species' => $this->species,
             'age' => $this->age,
             'eyesColor' => $this->eyesColor,
+            'birthdate' => $this->birthDate,
         ];
+    }
+
+    public function getBirthdate(): ?\DateTimeImmutable
+    {
+        return $this->birthDate;
+    }
+
+    public function setBirthDate(?\DateTimeImmutable $birthDate): void
+    {
+        $this->birthDate = $birthDate;
     }
 }

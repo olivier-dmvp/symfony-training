@@ -83,7 +83,8 @@ final class DinosaursController extends AbstractController
                 $dinosaur['gender'],
                 $dinosaur['species']->getId(),
                 $dinosaur['age'],
-                $dinosaur['eyesColor']
+                $dinosaur['eyesColor'],
+                $dinosaur['birthDate'],
             );
 
             try {
