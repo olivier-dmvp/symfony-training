@@ -11,7 +11,7 @@ Query:
                     args["search"]
                     )
             dinosaur:
-                type: 'Dinosaur!'
+                type: 'Dinosaur'
                 args: { id: { type: 'ID!' } }
                 resolve: |
                     @=query(

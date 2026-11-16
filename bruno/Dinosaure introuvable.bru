@@ -28,5 +28,5 @@ body:graphql:vars {
 assert {
   res.status: eq 200
   res.body.errors: isDefined
-  res.body.data: isNull
+  res.body.data.dinosaur: isNull
 }
