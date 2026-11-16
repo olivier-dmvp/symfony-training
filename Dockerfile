@@ -2,7 +2,7 @@ FROM composer:2 AS composer
 
 ##################################
 
-FROM php:8.4-fpm-alpine
+FROM php:8.5-fpm-alpine
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
