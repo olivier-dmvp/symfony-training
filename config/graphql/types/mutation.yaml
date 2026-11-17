@@ -4,6 +4,7 @@ Mutation:
         fields:
             createDinosaur:
                 type: 'Dinosaur!'
+                access: "@=isGranted('ROLE_ADMIN')"
                 args: { input: { type: 'CreateDinosaurInput!' } }
                 resolve: |
                     @=mutation(
