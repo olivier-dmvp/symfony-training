@@ -6,8 +6,9 @@ namespace Infrastructure\Lexik;
 
 use Application\Security\InvalidTokenException;
 use Application\Security\JWTEncoderInterface;
-use Application\Security\User;
+use Application\Security\User as SecurityUser;
 use Domain\Collection\UsersCollection;
+use Domain\Model\User;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\JWTDecodeFailureException;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
@@ -21,7 +22,7 @@ final class JWTEncoder implements JWTEncoderInterface
 
     public function encode(User $user): string
     {
-        return $this->tokenManager->create($user);
+        return $this->tokenManager->create(new SecurityUser($user));
     }
 
     public function decode(string $token): User
@@ -35,9 +36,7 @@ final class JWTEncoder implements JWTEncoderInterface
         $id = $payload[$this->tokenManager->getUserIdClaim()]
             ?? throw new InvalidTokenException('Identifiant absent du token.');
 
-        $user = $this->users->findOneById((int) $id)
+        return $this->users->findOneById((int) $id)
             ?? throw new InvalidTokenException('Utilisateur du token introuvable.');
-
-        return new User($user);
     }
 }

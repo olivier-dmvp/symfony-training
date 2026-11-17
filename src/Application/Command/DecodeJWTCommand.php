@@ -41,7 +41,7 @@ final class DecodeJWTCommand extends Command
 
         $io->definitionList(
             ['id' => $user->getId()],
-            ['email' => $user->getUserIdentifier()],
+            ['email' => $user->getEmail()],
             ['roles' => implode(', ', $user->getRoles())],
         );
 

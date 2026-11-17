@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Application\Command;
 
 use Application\Security\JWTEncoderInterface;
-use Application\Security\User;
 use Domain\Collection\UsersCollection;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -42,7 +41,7 @@ final class EncodeJWTCommand extends Command
             return Command::FAILURE;
         }
 
-        $io->writeln($this->encoder->encode(new User($user)));
+        $io->writeln($this->encoder->encode($user));
 
         return Command::SUCCESS;
     }
