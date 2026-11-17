@@ -8,11 +8,10 @@ use Application\MessageBus\EventBus as EventBusInterface;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\TransportNamesStamp;
 
 final class EventBus implements EventBusInterface
 {
-    use HandleTrait;
-
     public function __construct(private MessageBusInterface $messageBus)
     {
     }
@@ -20,7 +19,7 @@ final class EventBus implements EventBusInterface
     public function dispatch(object $event): void
     {
         try {
-            $this->handle($event);
+            $this->messageBus->dispatch($event);
         } catch (HandlerFailedException $handlerFailedException) {
             $nestedExceptions = $handlerFailedException->getWrappedExceptions();
 
