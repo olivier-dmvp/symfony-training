@@ -34,4 +34,9 @@ final class UserRepository extends ServiceEntityRepository implements UsersColle
         $this->objectManager->persist($user);
         $this->objectManager->flush();
     }
+
+    public function findOneById(int $id): ?User
+    {
+        return $this->find($id);
+    }
 }

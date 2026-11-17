@@ -15,6 +15,11 @@ final class User implements UserInterface, PasswordAuthenticatedUserInterface
     ) {
     }
 
+    public function getId(): int
+    {
+        return $this->user->getId();
+    }
+
     public function getRoles(): array
     {
         return $this->user->getRoles();
