@@ -35,14 +35,13 @@ final class BearerAuthenticator extends AbstractAuthenticator
         $token = substr((string) $request->headers->get('Authorization'), \strlen(self::PREFIX));
 
         try {
-            $user = $this->encoder->decode($token);
+            $id = $this->encoder->decode($token);
         } catch (InvalidTokenException $exception) {
             throw new CustomUserMessageAuthenticationException($exception->getMessage(), previous: $exception);
         }
 
-        return new SelfValidatingPassport(
-            new UserBadge($user->getEmail(), static fn (): User => new User($user)),
-        );
+        // Le provider du firewall (TokenUserProvider) charge l'utilisateur à partir de l'id.
+        return new SelfValidatingPassport(new UserBadge((string) $id));
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response

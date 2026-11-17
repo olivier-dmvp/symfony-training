@@ -6,6 +6,7 @@ namespace Application\Command;
 
 use Application\Security\InvalidTokenException;
 use Application\Security\JWTEncoderInterface;
+use Domain\Collection\UsersCollection;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -18,6 +19,7 @@ final class DecodeJWTCommand extends Command
 {
     public function __construct(
         private readonly JWTEncoderInterface $encoder,
+        private readonly UsersCollection $users,
     ) {
         parent::__construct();
     }
@@ -32,9 +34,17 @@ final class DecodeJWTCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         try {
-            $user = $this->encoder->decode($input->getArgument('token'));
+            $id = $this->encoder->decode($input->getArgument('token'));
         } catch (InvalidTokenException $exception) {
             $io->error($exception->getMessage());
+
+            return Command::FAILURE;
+        }
+
+        $user = $this->users->findOneById($id);
+
+        if (null === $user) {
+            $io->error(sprintf('Token valide, mais aucun utilisateur avec l\'id %d.', $id));
 
             return Command::FAILURE;
         }

@@ -11,7 +11,9 @@ interface JWTEncoderInterface
     public function encode(User $user): string;
 
     /**
+     * Renvoie l'id de l'utilisateur porté par le token.
+     *
      * @throws InvalidTokenException
      */
-    public function decode(string $token): User;
+    public function decode(string $token): int;
 }
