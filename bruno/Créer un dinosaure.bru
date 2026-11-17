@@ -30,7 +30,7 @@ body:graphql {
 body:graphql:vars {
   {
     "input": {
-      "name": "Bruno",
+      "name": "Bruno-{{$timestamp}}",
       "gender": "Male",
       "speciesId": "3",
       "age": 12,
@@ -42,5 +42,5 @@ body:graphql:vars {
 assert {
   res.status: eq 200
   res.body.errors: isUndefined
-  res.body.data.createDinosaur.name: eq "Bruno"
+  res.body.data.createDinosaur.name: startsWith Bruno-
 }

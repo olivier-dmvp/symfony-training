@@ -16,6 +16,7 @@ overblog_graphql:
         exceptions:
             errors:
                 - Domain\Exception\DinosaurNotFoundException
+                - Domain\Exception\DinosaurAlreadyExistsException
     security:
 #        query_max_complexity: 10
         query_max_depth: 5
