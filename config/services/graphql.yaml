@@ -25,3 +25,9 @@ services:
         tags:
             - name: overblog_graphql.resolver_map
               schema: main
+
+    Application\GraphQL\AuthenticationResolver:
+        tags:
+            - name: overblog_graphql.mutation
+              alias: login
+              method: login
