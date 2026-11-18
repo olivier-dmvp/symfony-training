@@ -7,6 +7,7 @@ use Domain\Collection\DinosaursCollection;
 use Domain\Exception\DinosaurNotFoundException;
 use Domain\Model\Dinosaur;
 use Domain\UseCase\CreateDinosaur;
+use Domain\UseCase\RemoveDinosaur;
 
 final readonly class DinosaurResolver
 {
@@ -43,5 +44,12 @@ final readonly class DinosaurResolver
         ));
 
         return $output->dinosaur;
+    }
+
+    public function removeDinosaur(string $id): string
+    {
+        $this->commandBus->dispatch(new RemoveDinosaur\Input($id));
+
+        return $id;
     }
 }

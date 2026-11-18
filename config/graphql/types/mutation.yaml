@@ -11,6 +11,15 @@ Mutation:
                     "createDinosaur",
                     args["input"]
                     )
+            removeDinosaur:
+                type: 'ID!'
+                access: "@=isGranted('DINOSAUR_REMOVE')"
+                args: { id: { type: 'ID!' } }
+                resolve: |
+                    @=mutation(
+                    "removeDinosaur",
+                    args["id"]
+                    )
             login:
                 type: 'String!'
                 args:
