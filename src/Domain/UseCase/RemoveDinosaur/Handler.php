@@ -27,12 +27,12 @@ final class Handler
             throw new DinosaurNotFoundException($input->id);
         }
 
+        // Doctrine désinitialise l'id au flush de la suppression.
+        $event = new DinosaurDied($dinosaur->getId(), $dinosaur->getName());
+
         $this->dinosaursCollection->remove($dinosaur);
 
-        $this->eventsRegisterer->register(new DinosaurDied(
-            $dinosaur->getId(),
-            $dinosaur->getName()
-        ));
+        $this->eventsRegisterer->register($event);
 
         return new Output();
     }
