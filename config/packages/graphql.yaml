@@ -17,6 +17,7 @@ overblog_graphql:
             errors:
                 - Domain\Exception\DinosaurNotFoundException
                 - Domain\Exception\DinosaurAlreadyExistsException
+                - Symfony\Component\Security\Core\Exception\AccessDeniedException
     security:
 #        query_max_complexity: 10
         query_max_depth: 5
