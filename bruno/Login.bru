@@ -1,0 +1,34 @@
+meta {
+  name: Login
+  type: graphql
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: none
+}
+
+body:graphql {
+  mutation Login($email: String!, $password: String!) {
+    token: login(email: $email, password: $password)
+  }
+}
+
+body:graphql:vars {
+  {
+    "email": "{{email}}",
+    "password": "{{password}}"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.errors: isUndefined
+  res.body.data.token: isString
+}
+
+script:post-response {
+  bru.setVar("token", res.body.data?.token);
+}

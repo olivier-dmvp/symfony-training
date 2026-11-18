@@ -1,0 +1,33 @@
+meta {
+  name: Supprimer un dinosaure
+  type: graphql
+  seq: 10
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:graphql {
+  mutation RemoveDinosaur($id: ID!) {
+    removeDinosaur(id: $id)
+  }
+}
+
+body:graphql:vars {
+  {
+    "id": "30"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.errors: isUndefined
+  res.body.data.removeDinosaur: isString
+}

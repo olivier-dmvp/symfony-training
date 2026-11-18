@@ -10,3 +10,22 @@ Mutation:
                     "createDinosaur",
                     args["input"]
                     )
+            removeDinosaur:
+                type: 'ID!'
+                args: { id: { type: 'ID!' } }
+                resolve: |
+                    @=mutation(
+                    "removeDinosaur",
+                    args["id"]
+                    )
+            login:
+                type: 'String!'
+                args:
+                    email: { type: 'String!' }
+                    password: { type: 'String!' }
+                resolve: |
+                    @=mutation(
+                    "login",
+                    args["email"],
+                    args["password"]
+                    )

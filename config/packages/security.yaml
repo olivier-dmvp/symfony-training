@@ -6,6 +6,8 @@ security:
     providers:
         app_user_provider:
           id: Application\Security\UserProvider
+        token_user_provider:
+          id: Application\Security\TokenUserProvider
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
@@ -14,6 +16,12 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        graphql:
+            pattern: ^/graphql
+            stateless: true
+            provider: token_user_provider
+            custom_authenticators:
+                - Application\Security\BearerAuthenticator
         main:
             lazy: true
             provider: app_user_provider
