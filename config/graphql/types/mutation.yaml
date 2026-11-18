@@ -4,7 +4,7 @@ Mutation:
         fields:
             createDinosaur:
                 type: 'Dinosaur!'
-                access: "@=isGranted('DINOSAUR_CREATE')"
+                # access: "@=isGranted('DINOSAUR_CREATE')"
                 args: { input: { type: 'CreateDinosaurInput!' } }
                 resolve: |
                     @=mutation(
@@ -13,7 +13,7 @@ Mutation:
                     )
             removeDinosaur:
                 type: 'ID!'
-                access: "@=isGranted('DINOSAUR_REMOVE')"
+                # access: "@=isGranted('DINOSAUR_REMOVE')"
                 args: { id: { type: 'ID!' } }
                 resolve: |
                     @=mutation(

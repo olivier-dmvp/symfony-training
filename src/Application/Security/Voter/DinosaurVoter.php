@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Application\Security\Voter;
 
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 /**
@@ -17,7 +17,7 @@ final class DinosaurVoter extends Voter
     public const REMOVE = 'DINOSAUR_REMOVE';
 
     public function __construct(
-        private readonly Security $security,
+        private readonly AccessDecisionManagerInterface $accessDecisionManager,
     ) {
     }
 
@@ -28,7 +28,6 @@ final class DinosaurVoter extends Voter
 
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
-        // isGranted() plutôt que getRoles() pour respecter role_hierarchy.
-        return $this->security->isGranted('ROLE_ADMIN');
+        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 }
