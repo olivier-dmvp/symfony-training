@@ -17,6 +17,7 @@ framework:
           command.bus:
             default_middleware: true
             middleware:
+              - Application\Security\Middleware\AuthorizationMiddleware
               - Infrastructure\Symfony\Messenger\Middleware\DomainEventDispatcher
               - dispatch_after_current_bus
               - doctrine_transaction

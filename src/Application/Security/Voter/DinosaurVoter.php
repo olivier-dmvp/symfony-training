@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 final class DinosaurVoter extends Voter
 {
     public const CREATE = 'DINOSAUR_CREATE';
+    public const EDIT = 'DINOSAUR_EDIT';
     public const REMOVE = 'DINOSAUR_REMOVE';
 
     public function __construct(
@@ -23,7 +24,7 @@ final class DinosaurVoter extends Voter
 
     protected function supports(string $attribute, mixed $subject): bool
     {
-        return \in_array($attribute, [self::CREATE, self::REMOVE], true);
+        return \in_array($attribute, [self::CREATE, self::EDIT, self::REMOVE], true);
     }
 
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
