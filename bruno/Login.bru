@@ -1,7 +1,7 @@
 meta {
   name: Login
   type: graphql
-  seq: 0
+  seq: 3
 }
 
 post {
@@ -18,8 +18,8 @@ body:graphql {
 
 body:graphql:vars {
   {
-    "email": "admin@mail.com",
-    "password": "admin"
+    "email": "{{email}}",
+    "password": "{{password}}"
   }
 }
 

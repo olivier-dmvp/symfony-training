@@ -1,7 +1,7 @@
 meta {
   name: Créer un dinosaure
   type: graphql
-  seq: 5
+  seq: 8
 }
 
 post {
@@ -43,4 +43,8 @@ assert {
   res.status: eq 200
   res.body.errors: isUndefined
   res.body.data.createDinosaur.name: startsWith Bruno-
+}
+
+script:post-response {
+  bru.setVar("dinosaurId", res.body.data?.createDinosaur?.id);
 }
